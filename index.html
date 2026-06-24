@@ -141,18 +141,57 @@
   @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
 
   /* TABLE */
-  .data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 10px; }
+  .data-table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 360px; }
   .data-table th {
     background: var(--navy);
     color: white;
-    padding: 9px 12px;
+    padding: 9px 10px;
     text-align: left;
-    font-size: 12px;
+    font-size: 11.5px;
     font-weight: 700;
+    white-space: nowrap;
   }
-  .data-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .data-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; font-size: 12.5px; line-height: 1.5; }
   .data-table tr:nth-child(even) td { background: var(--bg); }
   .data-table tr:last-child td { border-bottom: none; }
+
+  /* MOBILE CARD TABLES — stacks rows as labelled cards on small screens */
+  @media (max-width: 580px) {
+    .data-table.card-stack, .data-table.card-stack thead { display: block; }
+    .data-table.card-stack thead { display: none; }
+    .data-table.card-stack tbody { display: block; }
+    .data-table.card-stack tr {
+      display: block;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 10px;
+      padding: 10px 12px;
+    }
+    .data-table.card-stack tr:nth-child(even) { background: var(--card); }
+    .data-table.card-stack td {
+      display: flex;
+      flex-direction: column;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      padding: 7px 0;
+      font-size: 13px;
+    }
+    .data-table.card-stack td:last-child { border-bottom: none; }
+    .data-table.card-stack td::before {
+      content: attr(data-label);
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+    /* Simple 3-col tables: keep scrollable, just shrink font */
+    .data-table.scroll-only { min-width: 280px; font-size: 12px; }
+    .data-table.scroll-only th, .data-table.scroll-only td { padding: 7px 8px; font-size: 12px; }
+  }
 
   /* CLINICAL ALERT BOXES */
   .alert {
@@ -260,6 +299,15 @@
     max-height: 380px;
     background: #000;
   }
+  .video-wrapper iframe {
+    width: 100%;
+    display: block;
+    height: 360px;
+    border: none;
+  }
+  @media (max-width: 580px) {
+    .video-wrapper iframe { height: 210px; }
+  }
   .video-missing {
     background: var(--bg);
     border: 2px dashed var(--border);
@@ -353,6 +401,28 @@
   }
   .score-display { font-weight: 700; color: var(--navy); font-size: 15px; }
 
+  /* GLOBAL MOBILE OVERRIDES */
+  @media (max-width: 580px) {
+    .tab-content { padding: 12px 10px; }
+    header { padding: 16px 12px 12px; }
+    header h1 { font-size: 17px; }
+    header p { font-size: 12px; }
+    .tab-btn { font-size: 11px; padding: 11px 6px 9px; min-width: 70px; }
+    .card { padding: 12px; }
+    .exam-card-header { padding: 10px 12px; }
+    .exam-card-header h3 { font-size: 13px; }
+    .exam-card-body { padding: 12px; }
+    .section-title { font-size: 11.5px; }
+    .alert { padding: 10px 12px; font-size: 13px; }
+    .finding-box { padding: 8px 10px; font-size: 12.5px; }
+    .step-text { font-size: 13px; }
+    .locator-grid { grid-template-columns: 1fr; }
+    .quiz-progress { flex-direction: column; gap: 4px; align-items: flex-start; }
+    .q-stem { font-size: 13.5px; }
+    .opt-btn { font-size: 13px; padding: 9px 11px; }
+    .score-display { font-size: 14px; }
+  }
+
   /* FOOTER */
   footer {
     background: linear-gradient(135deg, var(--navy), var(--mid-blue));
@@ -368,7 +438,7 @@
 <body>
 
 <header>
-  <div class="badge">Neuroscience Practical • Ibn Sina University Faculty of Medicine</div>
+  <div class="badge">Faculty of Medicine Ibn Sina · Neuroscience Practical</div>
   <h1>Cranial Nerve Examination</h1>
   <p>Clinical Assessment & Lesion Localisation</p>
 </header>
@@ -391,25 +461,27 @@
 
   <div class="section-title">The 12 Cranial Nerves — Summary</div>
   <div class="card" style="padding:0; overflow:hidden;">
-    <table class="data-table">
+    <div class="table-wrap">
+    <table class="data-table card-stack">
       <thead>
         <tr><th>No.</th><th>Name</th><th>Type</th><th>Primary Function</th><th>Nucleus Location</th></tr>
       </thead>
       <tbody>
-        <tr><td><strong>I</strong></td><td>Olfactory</td><td><span style="color:#2563a8;font-weight:600;">Sensory</span></td><td>Smell</td><td>Cerebral cortex (direct)</td></tr>
-        <tr><td><strong>II</strong></td><td>Optic</td><td><span style="color:#2563a8;font-weight:600;">Sensory</span></td><td>Vision</td><td>Cerebral cortex (direct)</td></tr>
-        <tr><td><strong>III</strong></td><td>Oculomotor</td><td><span style="color:#7a5200;font-weight:600;">Mixed</span></td><td>Eye movement, pupil, ptosis</td><td>Midbrain</td></tr>
-        <tr><td><strong>IV</strong></td><td>Trochlear</td><td><span style="color:#1a6b1a;font-weight:600;">Motor</span></td><td>Superior oblique (eye)</td><td>Midbrain</td></tr>
-        <tr><td><strong>V</strong></td><td>Trigeminal</td><td><span style="color:#7a5200;font-weight:600;">Mixed</span></td><td>Facial sensation, mastication</td><td>Pons</td></tr>
-        <tr><td><strong>VI</strong></td><td>Abducent</td><td><span style="color:#1a6b1a;font-weight:600;">Motor</span></td><td>Lateral rectus (eye)</td><td>Pons</td></tr>
-        <tr><td><strong>VII</strong></td><td>Facial</td><td><span style="color:#7a5200;font-weight:600;">Mixed</span></td><td>Facial expression, taste (ant. 2/3)</td><td>Pons</td></tr>
-        <tr><td><strong>VIII</strong></td><td>Vestibulocochlear</td><td><span style="color:#2563a8;font-weight:600;">Sensory</span></td><td>Hearing, balance</td><td>Pons</td></tr>
-        <tr><td><strong>IX</strong></td><td>Glossopharyngeal</td><td><span style="color:#7a5200;font-weight:600;">Mixed</span></td><td>Swallowing, taste (post. 1/3), gag reflex</td><td>Medulla</td></tr>
-        <tr><td><strong>X</strong></td><td>Vagus</td><td><span style="color:#7a5200;font-weight:600;">Mixed</span></td><td>Palate, larynx, pharynx, viscera</td><td>Medulla</td></tr>
-        <tr><td><strong>XI</strong></td><td>Accessory</td><td><span style="color:#1a6b1a;font-weight:600;">Motor</span></td><td>Sternomastoid, trapezius</td><td>Medulla</td></tr>
-        <tr><td><strong>XII</strong></td><td>Hypoglossal</td><td><span style="color:#1a6b1a;font-weight:600;">Motor</span></td><td>All tongue muscles</td><td>Medulla</td></tr>
+        <tr><td data-label="No."><strong>I</strong></td><td data-label="Name">Olfactory</td><td data-label="Type"><span style="color:#2563a8;font-weight:600;">Sensory</span></td><td data-label="Primary Function">Smell</td><td data-label="Nucleus Location">Cerebral cortex (direct)</td></tr>
+        <tr><td data-label="No."><strong>II</strong></td><td data-label="Name">Optic</td><td data-label="Type"><span style="color:#2563a8;font-weight:600;">Sensory</span></td><td data-label="Primary Function">Vision</td><td data-label="Nucleus Location">Cerebral cortex (direct)</td></tr>
+        <tr><td data-label="No."><strong>III</strong></td><td data-label="Name">Oculomotor</td><td data-label="Type"><span style="color:#7a5200;font-weight:600;">Mixed</span></td><td data-label="Primary Function">Eye movement, pupil, ptosis</td><td data-label="Nucleus Location">Midbrain</td></tr>
+        <tr><td data-label="No."><strong>IV</strong></td><td data-label="Name">Trochlear</td><td data-label="Type"><span style="color:#1a6b1a;font-weight:600;">Motor</span></td><td data-label="Primary Function">Superior oblique (eye)</td><td data-label="Nucleus Location">Midbrain</td></tr>
+        <tr><td data-label="No."><strong>V</strong></td><td data-label="Name">Trigeminal</td><td data-label="Type"><span style="color:#7a5200;font-weight:600;">Mixed</span></td><td data-label="Primary Function">Facial sensation, mastication</td><td data-label="Nucleus Location">Pons</td></tr>
+        <tr><td data-label="No."><strong>VI</strong></td><td data-label="Name">Abducent</td><td data-label="Type"><span style="color:#1a6b1a;font-weight:600;">Motor</span></td><td data-label="Primary Function">Lateral rectus (eye)</td><td data-label="Nucleus Location">Pons</td></tr>
+        <tr><td data-label="No."><strong>VII</strong></td><td data-label="Name">Facial</td><td data-label="Type"><span style="color:#7a5200;font-weight:600;">Mixed</span></td><td data-label="Primary Function">Facial expression, taste (ant. 2/3)</td><td data-label="Nucleus Location">Pons</td></tr>
+        <tr><td data-label="No."><strong>VIII</strong></td><td data-label="Name">Vestibulocochlear</td><td data-label="Type"><span style="color:#2563a8;font-weight:600;">Sensory</span></td><td data-label="Primary Function">Hearing, balance</td><td data-label="Nucleus Location">Pons</td></tr>
+        <tr><td data-label="No."><strong>IX</strong></td><td data-label="Name">Glossopharyngeal</td><td data-label="Type"><span style="color:#7a5200;font-weight:600;">Mixed</span></td><td data-label="Primary Function">Swallowing, taste (post. 1/3), gag reflex</td><td data-label="Nucleus Location">Medulla</td></tr>
+        <tr><td data-label="No."><strong>X</strong></td><td data-label="Name">Vagus</td><td data-label="Type"><span style="color:#7a5200;font-weight:600;">Mixed</span></td><td data-label="Primary Function">Palate, larynx, pharynx, viscera</td><td data-label="Nucleus Location">Medulla</td></tr>
+        <tr><td data-label="No."><strong>XI</strong></td><td data-label="Name">Accessory</td><td data-label="Type"><span style="color:#1a6b1a;font-weight:600;">Motor</span></td><td data-label="Primary Function">Sternomastoid, trapezius</td><td data-label="Nucleus Location">Medulla</td></tr>
+        <tr><td data-label="No."><strong>XII</strong></td><td data-label="Name">Hypoglossal</td><td data-label="Type"><span style="color:#1a6b1a;font-weight:600;">Motor</span></td><td data-label="Primary Function">All tongue muscles</td><td data-label="Nucleus Location">Medulla</td></tr>
       </tbody>
     </table>
+    </div>
   </div>
 
   <div class="section-title">Nuclei by Brainstem Level</div>
@@ -451,22 +523,24 @@
 
   <div class="section-title">Cranial Nerve Foramina — Skull Exit Points</div>
   <div class="card" style="padding:0; overflow:hidden;">
-    <table class="data-table">
+    <div class="table-wrap">
+    <table class="data-table card-stack">
       <thead>
         <tr><th>Nerve</th><th>Foramen / Opening</th><th>Bone</th><th>Clinical Relevance</th></tr>
       </thead>
       <tbody>
-        <tr><td><strong>CN I</strong></td><td>Cribriform plate (foramina)</td><td>Ethmoid</td><td>Anterior cranial fossa fracture → anosmia, CSF rhinorrhoea</td></tr>
-        <tr><td><strong>CN II</strong></td><td>Optic canal</td><td>Sphenoid (lesser wing)</td><td>Orbital apex fracture or meningioma → optic nerve compression</td></tr>
-        <tr><td><strong>CN III, IV, V1, VI</strong></td><td>Superior orbital fissure</td><td>Sphenoid</td><td>Superior orbital fissure syndrome — all four nerves affected; cavernous sinus thrombosis, tumour</td></tr>
-        <tr><td><strong>CN V2</strong></td><td>Foramen rotundum</td><td>Sphenoid (greater wing)</td><td>Maxillary nerve compression → numbness of cheek, upper lip, upper teeth</td></tr>
-        <tr><td><strong>CN V3</strong></td><td>Foramen ovale</td><td>Sphenoid (greater wing)</td><td>Mandibular nerve; also site of percutaneous trigeminal rhizotomy for trigeminal neuralgia</td></tr>
-        <tr><td><strong>CN VII</strong></td><td>Internal acoustic meatus → facial canal → stylomastoid foramen</td><td>Temporal</td><td>Mastoid fracture or cholesteatoma → peripheral CN VII palsy (Bell's palsy pattern)</td></tr>
-        <tr><td><strong>CN VIII</strong></td><td>Internal acoustic meatus</td><td>Temporal</td><td>Acoustic neuroma (schwannoma) arises here; also involves CN VII in the same canal</td></tr>
-        <tr><td><strong>CN IX, X, XI</strong></td><td>Jugular foramen</td><td>Temporal / Occipital</td><td>Jugular foramen syndrome — glomus jugulare tumour, skull base metastasis, nasopharyngeal carcinoma</td></tr>
-        <tr><td><strong>CN XII</strong></td><td>Hypoglossal canal</td><td>Occipital</td><td>Occipital condyle fracture or tumour → tongue deviation to the affected side</td></tr>
+        <tr><td data-label="Nerve"><strong>CN I</strong></td><td data-label="Foramen">Cribriform plate (foramina)</td><td data-label="Bone">Ethmoid</td><td data-label="Clinical Relevance">Anterior cranial fossa fracture → anosmia, CSF rhinorrhoea</td></tr>
+        <tr><td data-label="Nerve"><strong>CN II</strong></td><td data-label="Foramen">Optic canal</td><td data-label="Bone">Sphenoid (lesser wing)</td><td data-label="Clinical Relevance">Orbital apex fracture or meningioma → optic nerve compression</td></tr>
+        <tr><td data-label="Nerve"><strong>CN III, IV, V1, VI</strong></td><td data-label="Foramen">Superior orbital fissure</td><td data-label="Bone">Sphenoid</td><td data-label="Clinical Relevance">Superior orbital fissure syndrome — all four nerves affected; cavernous sinus thrombosis, tumour</td></tr>
+        <tr><td data-label="Nerve"><strong>CN V2</strong></td><td data-label="Foramen">Foramen rotundum</td><td data-label="Bone">Sphenoid (greater wing)</td><td data-label="Clinical Relevance">Maxillary nerve compression → numbness of cheek, upper lip, upper teeth</td></tr>
+        <tr><td data-label="Nerve"><strong>CN V3</strong></td><td data-label="Foramen">Foramen ovale</td><td data-label="Bone">Sphenoid (greater wing)</td><td data-label="Clinical Relevance">Mandibular nerve; also site of percutaneous trigeminal rhizotomy for trigeminal neuralgia</td></tr>
+        <tr><td data-label="Nerve"><strong>CN VII</strong></td><td data-label="Foramen">Internal acoustic meatus → facial canal → stylomastoid foramen</td><td data-label="Bone">Temporal</td><td data-label="Clinical Relevance">Mastoid fracture or cholesteatoma → peripheral CN VII palsy (Bell's palsy pattern)</td></tr>
+        <tr><td data-label="Nerve"><strong>CN VIII</strong></td><td data-label="Foramen">Internal acoustic meatus</td><td data-label="Bone">Temporal</td><td data-label="Clinical Relevance">Acoustic neuroma (schwannoma) arises here; also involves CN VII in the same canal</td></tr>
+        <tr><td data-label="Nerve"><strong>CN IX, X, XI</strong></td><td data-label="Foramen">Jugular foramen</td><td data-label="Bone">Temporal / Occipital</td><td data-label="Clinical Relevance">Jugular foramen syndrome — glomus jugulare tumour, skull base metastasis, nasopharyngeal carcinoma</td></tr>
+        <tr><td data-label="Nerve"><strong>CN XII</strong></td><td data-label="Foramen">Hypoglossal canal</td><td data-label="Bone">Occipital</td><td data-label="Clinical Relevance">Occipital condyle fracture or tumour → tongue deviation to the affected side</td></tr>
       </tbody>
     </table>
+    </div>
   </div>
   <div class="alert alert-blue" style="margin-top:0;">
     <strong>Orbital Apex vs Cavernous Sinus</strong>
@@ -477,7 +551,8 @@
   <div class="card">
     <div class="card-title">Extraocular Muscle Innervation</div>
     <p style="font-size:13px;color:var(--muted);margin-bottom:10px;">Mnemonic: <strong>LR<sub>6</sub>SO<sub>4</sub>(3)</strong> — Lateral Rectus = CN VI, Superior Oblique = CN IV, all others = CN III</p>
-    <table class="data-table">
+    <div class="table-wrap">
+    <table class="data-table scroll-only">
       <thead><tr><th>Muscle</th><th>Action</th><th>Nerve</th></tr></thead>
       <tbody>
         <tr><td>Medial rectus</td><td>Adduction (moves eye medially)</td><td>CN III</td></tr>
@@ -489,6 +564,7 @@
         <tr><td>Lateral rectus</td><td>Abduction (moves eye laterally)</td><td>CN VI</td></tr>
       </tbody>
     </table>
+    </div>
   </div>
 
 </div>
@@ -524,7 +600,7 @@
       <div class="video-section">
         <div class="video-label">Watch: Olfactory Nerve Examination</div>
         <div class="video-wrapper">
-          <iframe src="https://drive.google.com/file/d/1y6tNFcgndxsuy6-6uK2kAA_kcrTLDFRG/preview" width="100%" height="360" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+          <iframe src="https://drive.google.com/file/d/1y6tNFcgndxsuy6-6uK2kAA_kcrTLDFRG/preview" width="100%" frameborder="0" allow="autoplay" allowfullscreen></iframe>
         </div>
       </div>
     </div>
@@ -561,7 +637,7 @@
       <div class="video-section">
         <div class="video-label">Watch: Optic Nerve Examination</div>
         <div class="video-wrapper">
-          <iframe src="https://drive.google.com/file/d/1tv6kDXII2xFmui0-ZpzhV3Qp5NvT9GWT/preview" width="100%" height="360" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+          <iframe src="https://drive.google.com/file/d/1tv6kDXII2xFmui0-ZpzhV3Qp5NvT9GWT/preview" width="100%" frameborder="0" allow="autoplay" allowfullscreen></iframe>
         </div>
       </div>
     </div>
@@ -593,7 +669,7 @@
       <div class="video-section">
         <div class="video-label">Watch: Ocular Nerve Examination (CN III, IV, VI)</div>
         <div class="video-wrapper">
-          <iframe src="https://drive.google.com/file/d/1jNxU7U0iBNidGBTnaDd8tQcqfh89paQm/preview" width="100%" height="360" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+          <iframe src="https://drive.google.com/file/d/1jNxU7U0iBNidGBTnaDd8tQcqfh89paQm/preview" width="100%" frameborder="0" allow="autoplay" allowfullscreen></iframe>
         </div>
       </div>
     </div>
@@ -619,7 +695,7 @@
       <div class="video-section">
         <div class="video-label">Watch: Trigeminal Nerve Examination</div>
         <div class="video-wrapper">
-          <iframe src="https://drive.google.com/file/d/1NHR4EkCxzg2ua0whtSPSXTTYRPR8Svmv/preview" width="100%" height="360" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+          <iframe src="https://drive.google.com/file/d/1NHR4EkCxzg2ua0whtSPSXTTYRPR8Svmv/preview" width="100%" frameborder="0" allow="autoplay" allowfullscreen></iframe>
         </div>
       </div>
     </div>
@@ -668,7 +744,7 @@
       <div class="video-section">
         <div class="video-label">Watch: Facial Nerve Examination</div>
         <div class="video-wrapper">
-          <iframe src="https://drive.google.com/file/d/1e40nGU6g1bzOsFr88Y0JZE5oeiB0iIO_/preview" width="100%" height="360" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+          <iframe src="https://drive.google.com/file/d/1e40nGU6g1bzOsFr88Y0JZE5oeiB0iIO_/preview" width="100%" frameborder="0" allow="autoplay" allowfullscreen></iframe>
         </div>
       </div>
     </div>
@@ -695,7 +771,7 @@
       <div class="video-section">
         <div class="video-label">Watch: Vestibulocochlear Nerve Examination</div>
         <div class="video-wrapper">
-          <iframe src="https://drive.google.com/file/d/1dqJ8k0bzypezJAm3eBTaMDqNHYslC3k9/preview" width="100%" height="360" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+          <iframe src="https://drive.google.com/file/d/1dqJ8k0bzypezJAm3eBTaMDqNHYslC3k9/preview" width="100%" frameborder="0" allow="autoplay" allowfullscreen></iframe>
         </div>
       </div>
     </div>
@@ -721,7 +797,7 @@
       <div class="video-section">
         <div class="video-label">Watch: Glossopharyngeal &amp; Vagus Nerve Examination</div>
         <div class="video-wrapper">
-          <iframe src="https://drive.google.com/file/d/1WQIv9Y3WKmkplJPuYMdRTuDD5CCdfUWp/preview" width="100%" height="360" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+          <iframe src="https://drive.google.com/file/d/1WQIv9Y3WKmkplJPuYMdRTuDD5CCdfUWp/preview" width="100%" frameborder="0" allow="autoplay" allowfullscreen></iframe>
         </div>
       </div>
     </div>
@@ -745,7 +821,7 @@
       <div class="video-section">
         <div class="video-label">Watch: Accessory Nerve Examination</div>
         <div class="video-wrapper">
-          <iframe src="https://drive.google.com/file/d/1JKTD0tPnQXYdfRi3zdTBiDFsenYDvkZ_/preview" width="100%" height="360" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+          <iframe src="https://drive.google.com/file/d/1JKTD0tPnQXYdfRi3zdTBiDFsenYDvkZ_/preview" width="100%" frameborder="0" allow="autoplay" allowfullscreen></iframe>
         </div>
       </div>
     </div>
@@ -770,7 +846,7 @@
       <div class="video-section">
         <div class="video-label">Watch: Hypoglossal Nerve Examination</div>
         <div class="video-wrapper">
-          <iframe src="https://drive.google.com/file/d/1gaI_58r0u2NTVIFn02sEmj_gfBRZgbto/preview" width="100%" height="360" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+          <iframe src="https://drive.google.com/file/d/1gaI_58r0u2NTVIFn02sEmj_gfBRZgbto/preview" width="100%" frameborder="0" allow="autoplay" allowfullscreen></iframe>
         </div>
       </div>
     </div>
@@ -923,7 +999,7 @@
 <!-- FOOTER -->
 <footer>
   <p>Cranial Nerves Clinical Examination · Year 3 Neuroscience Practical Session<br>
-  Developed for Ibn Sina University by Dr. Salaheldin Terair · 2026</p>
+  Developed Dr. Salaheldin Terair · 2025</p>
 </footer>
 
 <script>
