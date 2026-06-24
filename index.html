@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cranial Nerve Examination —  Neuroscience</title>
+<title>Cranial Nerve Examination — Year 3 Neuroscience</title>
 <style>
   :root {
     --navy: #1c3d6e;
@@ -47,12 +47,7 @@
   }
   header h1 { font-size: clamp(18px, 4vw, 24px); font-weight: 700; letter-spacing: -0.3px; }
   header p { font-size: 13px; opacity: 0.85; margin-top: 4px; }
-  .accent-stripe {
-    height: 6px;
-    background: linear-gradient(90deg, #4a9eed, #7ec8f5, #4a9eed);
-    box-shadow: inset 0 0 10px rgba(74,158,237,0.18);
-    margin-bottom: 4px;
-  }
+  .accent-stripe { height: 4px; background: linear-gradient(90deg, #4a9eed, #7ec8f5, #4a9eed); }
 
   /* TABS */
   .tab-bar {
@@ -643,17 +638,28 @@
       <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Lower face:</strong> "Show me your teeth." "Puff out your cheeks." "Whistle." Note any deviation or weakness.</div></div>
       <div class="alert alert-warn" style="margin-top:10px;">
         <strong>Central vs Peripheral Facial Palsy — Key Distinction</strong>
-        <table class="data-table" style="margin-top:6px;">
-          <thead><tr><th>Feature</th><th>Central (UMN)</th><th>Peripheral (LMN)</th></tr></thead>
-          <tbody>
-            <tr><td>Lesion site</td><td>Above facial nucleus (cortex/internal capsule)</td><td>At/below facial nucleus (pons, facial canal, parotid)</td></tr>
-            <tr><td>Side of weakness</td><td>Contralateral</td><td>Ipsilateral</td></tr>
-            <tr><td>Forehead sparing</td><td class="ok">YES — upper face spared</td><td class="loss">NO — entire face weak</td></tr>
-            <tr><td>Eye closure</td><td class="ok">Normal</td><td class="loss">Cannot close eye</td></tr>
-            <tr><td>Nasolabial fold</td><td class="loss">Flattened</td><td class="loss">Flattened</td></tr>
-            <tr><td>Mouth deviation</td><td class="loss">To unaffected side</td><td class="loss">To unaffected side</td></tr>
-          </tbody>
-        </table>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;">
+          <div style="background:rgba(255,255,255,0.6); border-radius:7px; padding:10px; font-size:12.5px;">
+            <div style="font-weight:700; color:var(--navy); font-size:12px; text-transform:uppercase; margin-bottom:8px; padding-bottom:4px; border-bottom:2px solid var(--mid-blue);">Central (UMN)</div>
+            <div style="margin-bottom:5px;"><span style="color:var(--muted); font-size:11px; display:block;">Lesion site</span>Above facial nucleus (cortex / internal capsule)</div>
+            <div style="margin-bottom:5px;"><span style="color:var(--muted); font-size:11px; display:block;">Side of weakness</span>Contralateral</div>
+            <div style="margin-bottom:5px;"><span style="color:var(--muted); font-size:11px; display:block;">Forehead</span><span class="ok">✓ Spared — can raise eyebrow</span></div>
+            <div style="margin-bottom:5px;"><span style="color:var(--muted); font-size:11px; display:block;">Eye closure</span><span class="ok">✓ Normal</span></div>
+            <div style="margin-bottom:5px;"><span style="color:var(--muted); font-size:11px; display:block;">Nasolabial fold</span><span class="loss">✗ Flattened</span></div>
+            <div style="margin-bottom:5px;"><span style="color:var(--muted); font-size:11px; display:block;">Mouth deviation</span><span class="loss">✗ To unaffected side</span></div>
+            <div><span style="color:var(--muted); font-size:11px; display:block;">Cause</span>Stroke, tumour, MS</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.6); border-radius:7px; padding:10px; font-size:12.5px;">
+            <div style="font-weight:700; color:var(--red); font-size:12px; text-transform:uppercase; margin-bottom:8px; padding-bottom:4px; border-bottom:2px solid var(--red);">Peripheral (LMN)</div>
+            <div style="margin-bottom:5px;"><span style="color:var(--muted); font-size:11px; display:block;">Lesion site</span>At/below facial nucleus (pons, facial canal, parotid)</div>
+            <div style="margin-bottom:5px;"><span style="color:var(--muted); font-size:11px; display:block;">Side of weakness</span>Ipsilateral</div>
+            <div style="margin-bottom:5px;"><span style="color:var(--muted); font-size:11px; display:block;">Forehead</span><span class="loss">✗ Weak — cannot raise eyebrow</span></div>
+            <div style="margin-bottom:5px;"><span style="color:var(--muted); font-size:11px; display:block;">Eye closure</span><span class="loss">✗ Cannot close eye</span></div>
+            <div style="margin-bottom:5px;"><span style="color:var(--muted); font-size:11px; display:block;">Nasolabial fold</span><span class="loss">✗ Flattened</span></div>
+            <div style="margin-bottom:5px;"><span style="color:var(--muted); font-size:11px; display:block;">Mouth deviation</span><span class="loss">✗ To unaffected side</span></div>
+            <div><span style="color:var(--muted); font-size:11px; display:block;">Cause</span>Bell's palsy, parotid tumour, trauma</div>
+          </div>
+        </div>
       </div>
       <div class="finding-box">
         <strong>Why is the forehead spared in UMN lesions?</strong>
@@ -805,19 +811,29 @@
   </div>
 
   <div class="section-title">Bell's Palsy vs Stroke — Facial Palsy</div>
-  <div class="card" style="padding:0;overflow:hidden;">
-    <table class="data-table">
-      <thead><tr><th>Feature</th><th>Bell's Palsy (LMN / Peripheral)</th><th>Stroke (UMN / Central)</th></tr></thead>
-      <tbody>
-        <tr><td>Onset</td><td>Rapid (hours to days)</td><td>Sudden (minutes)</td></tr>
-        <tr><td>Forehead</td><td class="loss">Weak — cannot raise eyebrow</td><td class="ok">Spared — can raise eyebrow</td></tr>
-        <tr><td>Eye closure</td><td class="loss">Cannot close eye (Bell's phenomenon)</td><td class="ok">Normal or near-normal</td></tr>
-        <tr><td>Taste</td><td class="loss">May be lost (anterior 2/3 tongue)</td><td class="ok">Preserved</td></tr>
-        <tr><td>Hyperacusis</td><td class="loss">May be present (stapedius branch)</td><td class="ok">Absent</td></tr>
-        <tr><td>Associated limb weakness</td><td class="ok">None</td><td class="loss">Contralateral hemiplegia often present</td></tr>
-        <tr><td>Aetiology</td><td>Viral (HSV-1 reactivation most common)</td><td>Vascular / demyelinating</td></tr>
-      </tbody>
-    </table>
+  <div class="card">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+      <div style="font-size:13px;">
+        <div style="font-weight:700; color:var(--red); font-size:12px; text-transform:uppercase; margin-bottom:8px; padding-bottom:4px; border-bottom:2px solid var(--red);">Bell's Palsy (LMN)</div>
+        <div style="margin-bottom:6px;"><span style="color:var(--muted); font-size:11px; display:block;">Onset</span>Hours to days</div>
+        <div style="margin-bottom:6px;"><span style="color:var(--muted); font-size:11px; display:block;">Forehead</span><span class="loss">✗ Weak — cannot raise eyebrow</span></div>
+        <div style="margin-bottom:6px;"><span style="color:var(--muted); font-size:11px; display:block;">Eye closure</span><span class="loss">✗ Cannot close (Bell's phenomenon)</span></div>
+        <div style="margin-bottom:6px;"><span style="color:var(--muted); font-size:11px; display:block;">Taste</span><span class="loss">✗ May be lost (ant. 2/3)</span></div>
+        <div style="margin-bottom:6px;"><span style="color:var(--muted); font-size:11px; display:block;">Hyperacusis</span><span class="loss">✗ May be present</span></div>
+        <div style="margin-bottom:6px;"><span style="color:var(--muted); font-size:11px; display:block;">Limb weakness</span><span class="ok">✓ None</span></div>
+        <div><span style="color:var(--muted); font-size:11px; display:block;">Aetiology</span>Viral — HSV-1 reactivation</div>
+      </div>
+      <div style="font-size:13px;">
+        <div style="font-weight:700; color:var(--navy); font-size:12px; text-transform:uppercase; margin-bottom:8px; padding-bottom:4px; border-bottom:2px solid var(--mid-blue);">Stroke (UMN)</div>
+        <div style="margin-bottom:6px;"><span style="color:var(--muted); font-size:11px; display:block;">Onset</span>Sudden (minutes)</div>
+        <div style="margin-bottom:6px;"><span style="color:var(--muted); font-size:11px; display:block;">Forehead</span><span class="ok">✓ Spared — can raise eyebrow</span></div>
+        <div style="margin-bottom:6px;"><span style="color:var(--muted); font-size:11px; display:block;">Eye closure</span><span class="ok">✓ Normal or near-normal</span></div>
+        <div style="margin-bottom:6px;"><span style="color:var(--muted); font-size:11px; display:block;">Taste</span><span class="ok">✓ Preserved</span></div>
+        <div style="margin-bottom:6px;"><span style="color:var(--muted); font-size:11px; display:block;">Hyperacusis</span><span class="ok">✓ Absent</span></div>
+        <div style="margin-bottom:6px;"><span style="color:var(--muted); font-size:11px; display:block;">Limb weakness</span><span class="loss">✗ Contralateral hemiplegia</span></div>
+        <div><span style="color:var(--muted); font-size:11px; display:block;">Aetiology</span>Vascular / demyelinating</div>
+      </div>
+    </div>
   </div>
 
   <div class="section-title">Weber Syndrome (Midbrain)</div>
@@ -906,8 +922,8 @@
 
 <!-- FOOTER -->
 <footer>
-  <p>Cranial Nerves Clinical Examination | Neuroscience Practical Session<br>
-  Developed by Dr. Salaheldin Terair · 2026</p>
+  <p>Cranial Nerves Clinical Examination · Year 3 Neuroscience Practical Session<br>
+  Developed for Ibn Sina University by Dr. Salaheldin Terair · 2026</p>
 </footer>
 
 <script>
