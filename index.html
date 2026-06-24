@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cranial Nerve Examination —  Neuroscience</title>
+<style>
+  :root {
+    --navy: #1c3d6e;
+    --mid-blue: #2563a8;
+    --light-blue: #1b7dc4;
+    --accent: #e8f0fb;
+    --bg: #f5f7fa;
+    --card: #ffffff;
+    --border: #ddeaf5;
+    --text: #222222;
+    --muted: #5a6a80;
+    --green: #1a6b1a;
+    --green-bg: #eaf5ea;
+    --green-border: #b2d8b2;
+    --red: #8b1a1a;
+    --red-bg: #fdf0f0;
+    --warn: #7a5200;
+    --warn-bg: #fff8e8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); font-size: 15px; }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, var(--navy) 0%, #1e4a8a 55%, var(--mid-blue) 100%);
+    padding: 20px 16px 16px;
+    text-align: center;
+    color: white;
+  }
+  header .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-size: 11px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  header h1 { font-size: clamp(18px, 4vw, 24px); font-weight: 700; letter-spacing: -0.3px; }
+  header p { font-size: 13px; opacity: 0.85; margin-top: 4px; }
+  .accent-stripe {
+    height: 6px;
+    background: linear-gradient(90deg, #4a9eed, #7ec8f5, #4a9eed);
+    box-shadow: inset 0 0 10px rgba(74,158,237,0.18);
+    margin-bottom: 4px;
+  }
+
+  /* TABS */
+  .tab-bar {
+    display: flex;
+    background: white;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    overflow-x: auto;
+    scrollbar-width: none;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .tab-bar::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    flex: 1;
+    min-width: 80px;
+    padding: 13px 8px 11px;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .tab-btn.active {
+    color: var(--navy);
+    border-bottom-color: var(--mid-blue);
+  }
+  .tab-btn:hover { color: var(--mid-blue); }
+
+  /* CONTENT */
+  .tab-content { display: none; padding: 16px; max-width: 900px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+
+  /* SECTION HEADERS */
+  .section-title {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--mid-blue);
+    margin: 20px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--border);
+  }
+  .section-title:first-child { margin-top: 4px; }
+
+  /* CARDS */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+  }
+  .card-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .cn-badge {
+    background: var(--navy);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 12px;
+    white-space: nowrap;
+  }
+  .cn-badge.sensory { background: #2563a8; }
+  .cn-badge.motor { background: #1a6b1a; }
+  .cn-badge.mixed { background: #7a5200; }
+  .cn-badge.parasym { background: #5a1a6b; }
+
+  .card ul { padding-left: 18px; }
+  .card ul li { margin-bottom: 4px; line-height: 1.5; }
+  .card p { line-height: 1.6; margin-bottom: 6px; }
+  .card p:last-child { margin-bottom: 0; }
+
+  /* TWO-COLUMN GRID */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* TABLE */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .data-table th {
+    background: var(--navy);
+    color: white;
+    padding: 9px 12px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .data-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .data-table tr:nth-child(even) td { background: var(--bg); }
+  .data-table tr:last-child td { border-bottom: none; }
+
+  /* CLINICAL ALERT BOXES */
+  .alert {
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+  .alert-blue { background: var(--accent); border-left: 4px solid var(--mid-blue); color: var(--navy); }
+  .alert-green { background: var(--green-bg); border-left: 4px solid var(--green); color: var(--green); }
+  .alert-warn { background: var(--warn-bg); border-left: 4px solid var(--warn); color: var(--warn); }
+  .alert-red { background: var(--red-bg); border-left: 4px solid var(--red); color: var(--red); }
+  .alert strong { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+
+  /* EXAM STEP CARDS */
+  .exam-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 14px;
+    overflow: hidden;
+  }
+  .exam-card-header {
+    background: var(--accent);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .exam-card-header:hover { background: #dce8f8; }
+  .exam-card-header h3 { font-size: 14px; font-weight: 700; color: var(--navy); flex: 1; }
+  .exam-card-header .chevron { color: var(--mid-blue); font-size: 16px; transition: transform 0.25s; }
+  .exam-card-header.open .chevron { transform: rotate(90deg); }
+  .exam-card-body { display: none; padding: 14px 16px; }
+  .exam-card-body.open { display: block; }
+
+  .step { display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start; }
+  .step-num {
+    background: var(--mid-blue);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    min-width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+  .step-text { font-size: 13.5px; line-height: 1.6; }
+  .step-text em { color: var(--muted); font-style: normal; font-size: 12.5px; }
+
+  .finding-box {
+    background: var(--red-bg);
+    border: 1px solid #f0c0c0;
+    border-radius: 7px;
+    padding: 9px 12px;
+    margin-top: 10px;
+    font-size: 13px;
+  }
+  .finding-box strong { color: var(--red); display: block; font-size: 12px; text-transform: uppercase; margin-bottom: 3px; }
+
+  /* VIDEO PLAYER */
+  .video-section {
+    margin-top: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+  }
+  .video-label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--mid-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-bottom: 8px;
+  }
+  .video-label::before {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 9px solid var(--mid-blue);
+  }
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .video-wrapper video {
+    width: 100%;
+    display: block;
+    max-height: 380px;
+    background: #000;
+  }
+  .video-missing {
+    background: var(--bg);
+    border: 2px dashed var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .video-missing code {
+    font-size: 12px;
+    color: var(--mid-blue);
+    font-family: 'Courier New', monospace;
+    background: var(--accent);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  /* LESION LOCATOR */
+  .locator-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+  .locator-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+  }
+  .locator-card h4 { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .locator-card .sign-row { display: flex; gap: 6px; align-items: flex-start; margin-bottom: 5px; font-size: 13px; line-height: 1.5; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--mid-blue); margin-top: 5px; flex-shrink: 0; }
+  .dot.green { background: var(--green); }
+  .dot.red { background: var(--red); }
+
+  /* COMPARISON TABLE */
+  .ok { color: var(--green); font-weight: 600; }
+  .loss { color: var(--red); font-weight: 600; }
+
+  /* QUIZ */
+  #quiz-container { margin-top: 4px; }
+  .q-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 14px;
+  }
+  .q-num { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; }
+  .q-scenario { font-size: 13.5px; font-style: italic; color: #3a4a60; margin-bottom: 8px; line-height: 1.6; }
+  .q-stem { font-size: 14.5px; font-weight: 700; color: var(--navy); margin-bottom: 12px; line-height: 1.5; }
+  .opt-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: 7px;
+    padding: 10px 13px;
+    margin-bottom: 7px;
+    cursor: pointer;
+    font-size: 13.5px;
+    font-family: inherit;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .opt-btn:hover { background: var(--accent); border-color: var(--mid-blue); }
+  .opt-btn.correct { background: var(--green-bg); border-color: var(--green); color: var(--green); font-weight: 600; }
+  .opt-btn.wrong { background: var(--red-bg); border-color: var(--red); color: var(--red); }
+  .opt-btn.disabled { cursor: default; }
+  .opt-letter { font-family: 'Courier New', monospace; font-weight: 700; font-size: 12px; margin-right: 8px; }
+  .explanation {
+    display: none;
+    background: var(--green-bg);
+    border: 1px solid var(--green-border);
+    border-radius: 7px;
+    padding: 10px 12px;
+    margin-top: 8px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #1a4a1a;
+  }
+  .explanation.show { display: block; }
+  .explanation strong { color: var(--green); }
+
+  .quiz-progress {
+    background: var(--accent);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+  }
+  .score-display { font-weight: 700; color: var(--navy); font-size: 15px; }
+
+  /* FOOTER */
+  footer {
+    background: linear-gradient(135deg, var(--navy), var(--mid-blue));
+    color: white;
+    text-align: center;
+    padding: 14px;
+    font-size: 12px;
+    margin-top: 24px;
+  }
+  footer p { opacity: 0.85; line-height: 1.7; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">Neuroscience Practical • Ibn Sina University Faculty of Medicine</div>
+  <h1>Cranial Nerve Examination</h1>
+  <p>Clinical Assessment & Lesion Localisation</p>
+</header>
+<div class="accent-stripe"></div>
+
+<nav class="tab-bar">
+  <button class="tab-btn active" onclick="showTab('overview', this)">Overview</button>
+  <button class="tab-btn" onclick="showTab('examination', this)">Examination</button>
+  <button class="tab-btn" onclick="showTab('lesions', this)">Lesion Finder</button>
+  <button class="tab-btn" onclick="showTab('quiz', this)">Quiz</button>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════ TAB 1: OVERVIEW -->
+<div id="overview" class="tab-content active">
+
+  <div class="alert alert-blue">
+    <strong>Learning Objective</strong>
+    By the end of this session, you should be able to name all 12 cranial nerves, classify each by fibre type, identify their brainstem nuclei, and describe the key clinical findings of each nerve lesion.
+  </div>
+
+  <div class="section-title">The 12 Cranial Nerves — Summary</div>
+  <div class="card" style="padding:0; overflow:hidden;">
+    <table class="data-table">
+      <thead>
+        <tr><th>No.</th><th>Name</th><th>Type</th><th>Primary Function</th><th>Nucleus Location</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>I</strong></td><td>Olfactory</td><td><span style="color:#2563a8;font-weight:600;">Sensory</span></td><td>Smell</td><td>Cerebral cortex (direct)</td></tr>
+        <tr><td><strong>II</strong></td><td>Optic</td><td><span style="color:#2563a8;font-weight:600;">Sensory</span></td><td>Vision</td><td>Cerebral cortex (direct)</td></tr>
+        <tr><td><strong>III</strong></td><td>Oculomotor</td><td><span style="color:#7a5200;font-weight:600;">Mixed</span></td><td>Eye movement, pupil, ptosis</td><td>Midbrain</td></tr>
+        <tr><td><strong>IV</strong></td><td>Trochlear</td><td><span style="color:#1a6b1a;font-weight:600;">Motor</span></td><td>Superior oblique (eye)</td><td>Midbrain</td></tr>
+        <tr><td><strong>V</strong></td><td>Trigeminal</td><td><span style="color:#7a5200;font-weight:600;">Mixed</span></td><td>Facial sensation, mastication</td><td>Pons</td></tr>
+        <tr><td><strong>VI</strong></td><td>Abducent</td><td><span style="color:#1a6b1a;font-weight:600;">Motor</span></td><td>Lateral rectus (eye)</td><td>Pons</td></tr>
+        <tr><td><strong>VII</strong></td><td>Facial</td><td><span style="color:#7a5200;font-weight:600;">Mixed</span></td><td>Facial expression, taste (ant. 2/3)</td><td>Pons</td></tr>
+        <tr><td><strong>VIII</strong></td><td>Vestibulocochlear</td><td><span style="color:#2563a8;font-weight:600;">Sensory</span></td><td>Hearing, balance</td><td>Pons</td></tr>
+        <tr><td><strong>IX</strong></td><td>Glossopharyngeal</td><td><span style="color:#7a5200;font-weight:600;">Mixed</span></td><td>Swallowing, taste (post. 1/3), gag reflex</td><td>Medulla</td></tr>
+        <tr><td><strong>X</strong></td><td>Vagus</td><td><span style="color:#7a5200;font-weight:600;">Mixed</span></td><td>Palate, larynx, pharynx, viscera</td><td>Medulla</td></tr>
+        <tr><td><strong>XI</strong></td><td>Accessory</td><td><span style="color:#1a6b1a;font-weight:600;">Motor</span></td><td>Sternomastoid, trapezius</td><td>Medulla</td></tr>
+        <tr><td><strong>XII</strong></td><td>Hypoglossal</td><td><span style="color:#1a6b1a;font-weight:600;">Motor</span></td><td>All tongue muscles</td><td>Medulla</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-title">Nuclei by Brainstem Level</div>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">🧠 Midbrain</div>
+      <ul>
+        <li><strong>CN III</strong> — Oculomotor nucleus</li>
+        <li><strong>CN IV</strong> — Trochlear nucleus</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">🧠 Pons</div>
+      <ul>
+        <li><strong>CN V</strong> — Trigeminal (motor + main sensory)</li>
+        <li><strong>CN VI</strong> — Abducent</li>
+        <li><strong>CN VII</strong> — Facial</li>
+        <li><strong>CN VIII</strong> — Vestibulocochlear</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">🧠 Medulla Oblongata</div>
+      <ul>
+        <li><strong>CN IX</strong> — Glossopharyngeal</li>
+        <li><strong>CN X</strong> — Vagus</li>
+        <li><strong>CN XI</strong> — Accessory</li>
+        <li><strong>CN XII</strong> — Hypoglossal</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">🧠 Directly to Cortex</div>
+      <ul>
+        <li><strong>CN I</strong> — Olfactory → temporal lobe</li>
+        <li><strong>CN II</strong> — Optic → occipital lobe</li>
+      </ul>
+      <p style="margin-top:8px;font-size:12.5px;color:var(--muted);">CN I and II are not true cranial nerves — they are extensions of the CNS (brain tracts).</p>
+    </div>
+  </div>
+
+  <div class="section-title">Cranial Nerve Foramina — Skull Exit Points</div>
+  <div class="card" style="padding:0; overflow:hidden;">
+    <table class="data-table">
+      <thead>
+        <tr><th>Nerve</th><th>Foramen / Opening</th><th>Bone</th><th>Clinical Relevance</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>CN I</strong></td><td>Cribriform plate (foramina)</td><td>Ethmoid</td><td>Anterior cranial fossa fracture → anosmia, CSF rhinorrhoea</td></tr>
+        <tr><td><strong>CN II</strong></td><td>Optic canal</td><td>Sphenoid (lesser wing)</td><td>Orbital apex fracture or meningioma → optic nerve compression</td></tr>
+        <tr><td><strong>CN III, IV, V1, VI</strong></td><td>Superior orbital fissure</td><td>Sphenoid</td><td>Superior orbital fissure syndrome — all four nerves affected; cavernous sinus thrombosis, tumour</td></tr>
+        <tr><td><strong>CN V2</strong></td><td>Foramen rotundum</td><td>Sphenoid (greater wing)</td><td>Maxillary nerve compression → numbness of cheek, upper lip, upper teeth</td></tr>
+        <tr><td><strong>CN V3</strong></td><td>Foramen ovale</td><td>Sphenoid (greater wing)</td><td>Mandibular nerve; also site of percutaneous trigeminal rhizotomy for trigeminal neuralgia</td></tr>
+        <tr><td><strong>CN VII</strong></td><td>Internal acoustic meatus → facial canal → stylomastoid foramen</td><td>Temporal</td><td>Mastoid fracture or cholesteatoma → peripheral CN VII palsy (Bell's palsy pattern)</td></tr>
+        <tr><td><strong>CN VIII</strong></td><td>Internal acoustic meatus</td><td>Temporal</td><td>Acoustic neuroma (schwannoma) arises here; also involves CN VII in the same canal</td></tr>
+        <tr><td><strong>CN IX, X, XI</strong></td><td>Jugular foramen</td><td>Temporal / Occipital</td><td>Jugular foramen syndrome — glomus jugulare tumour, skull base metastasis, nasopharyngeal carcinoma</td></tr>
+        <tr><td><strong>CN XII</strong></td><td>Hypoglossal canal</td><td>Occipital</td><td>Occipital condyle fracture or tumour → tongue deviation to the affected side</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="alert alert-blue" style="margin-top:0;">
+    <strong>Orbital Apex vs Cavernous Sinus</strong>
+    Both affect CN III, IV, V1, and VI. The key distinction: cavernous sinus lesions may additionally involve the sympathetic plexus (Horner syndrome) and CN V2, and are often associated with proptosis and chemosis due to venous obstruction. Orbital apex lesions spare V2.
+  </div>
+
+  <div class="section-title">Ocular Muscles — CN III, IV, VI</div>
+  <div class="card">
+    <div class="card-title">Extraocular Muscle Innervation</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:10px;">Mnemonic: <strong>LR<sub>6</sub>SO<sub>4</sub>(3)</strong> — Lateral Rectus = CN VI, Superior Oblique = CN IV, all others = CN III</p>
+    <table class="data-table">
+      <thead><tr><th>Muscle</th><th>Action</th><th>Nerve</th></tr></thead>
+      <tbody>
+        <tr><td>Medial rectus</td><td>Adduction (moves eye medially)</td><td>CN III</td></tr>
+        <tr><td>Superior rectus</td><td>Elevation + intorsion</td><td>CN III</td></tr>
+        <tr><td>Inferior rectus</td><td>Depression + extorsion</td><td>CN III</td></tr>
+        <tr><td>Inferior oblique</td><td>Elevation + extorsion + abduction</td><td>CN III</td></tr>
+        <tr><td>Levator palpebrae superioris</td><td>Raises upper eyelid</td><td>CN III</td></tr>
+        <tr><td>Superior oblique</td><td>Depression + intorsion</td><td>CN IV</td></tr>
+        <tr><td>Lateral rectus</td><td>Abduction (moves eye laterally)</td><td>CN VI</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ TAB 2: EXAMINATION -->
+<div id="examination" class="tab-content">
+
+  <div class="alert alert-blue">
+    <strong>Examination Approach</strong>
+    Always introduce yourself, explain the examination, and obtain consent. Examine with the patient seated comfortably facing you. Test both sides and compare throughout.
+  </div>
+
+  <!-- CN I -->
+  <div class="exam-card">
+    <div class="exam-card-header" onclick="toggleExam(this)">
+      <span class="cn-badge sensory">CN I</span>
+      <h3>Olfactory Nerve — Smell</h3>
+      <span class="chevron">▶</span>
+    </div>
+    <div class="exam-card-body">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Ask the patient if they have noticed any change in their sense of smell.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Occlude one nostril. Hold a familiar, non-irritant smell (coffee, vanilla, cloves) below the other nostril. Ask patient to identify it.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text">Repeat on the other side with a different substance.</div></div>
+      <div class="alert alert-warn" style="margin-top:10px;">
+        <strong>Do not use</strong>
+        Avoid ammonia or alcohol — these stimulate the trigeminal nerve, not the olfactory nerve, and will give a false-positive response even with CN I damage.
+      </div>
+      <div class="finding-box">
+        <strong>Abnormal Findings</strong>
+        <strong>Anosmia:</strong> Unilateral loss → anterior cranial fossa tumour or skull base fracture. Bilateral → meningitis, bilateral frontal trauma, or toxic causes.<br>
+        <strong>Hyperosmia/Hallucinations:</strong> Uncinate seizures (temporal lobe epilepsy).
+      </div>
+      <div class="video-section">
+        <div class="video-label">Watch: Olfactory Nerve Examination</div>
+        <div class="video-wrapper">
+          <iframe src="https://drive.google.com/file/d/1y6tNFcgndxsuy6-6uK2kAA_kcrTLDFRG/preview" width="100%" height="360" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CN II -->
+  <div class="exam-card">
+    <div class="exam-card-header" onclick="toggleExam(this)">
+      <span class="cn-badge sensory">CN II</span>
+      <h3>Optic Nerve — Vision</h3>
+      <span class="chevron">▶</span>
+    </div>
+    <div class="exam-card-body">
+      <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Visual acuity:</strong> Test each eye separately with a Snellen chart (6 metres) or near vision card. Record as 6/6, 6/9 etc.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Colour vision:</strong> Use Ishihara plates if available; ask patient to identify numbers within dotted patterns.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Visual fields by confrontation:</strong> Sit 1 metre from patient, both at eye level. Cover one eye each. Move a finger (or white-headed pin) from the periphery inward in each quadrant. Ask patient to say "now" when they first see it.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text"><strong>Pupillary reactions:</strong> Shine a light into each eye. Assess direct and consensual (opposite eye) response. Test the swinging flashlight sign for relative afferent pupillary defect (RAPD).</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-text"><strong>Fundoscopy:</strong> In a darkened room, examine the optic disc for margin clarity, colour, and cup-to-disc ratio. Note any papilloedema or optic atrophy.</div></div>
+      <div class="finding-box">
+        <strong>Visual Field Defects — Localisation</strong>
+        <strong>Optic nerve lesion:</strong> Monocular blindness (ipsilateral eye only).<br>
+        <strong>Optic chiasma lesion:</strong> Bitemporal hemianopia (nasal fibres decussate here; pituitary tumour classic cause).<br>
+        <strong>Optic tract lesion:</strong> Contralateral homonymous hemianopia.<br>
+        <strong>Temporal lobe (optic radiation):</strong> Superior homonymous quadrantanopia ("pie in the sky").<br>
+        <strong>Parietal lobe (optic radiation):</strong> Inferior homonymous quadrantanopia ("pie on the floor").<br>
+        <strong>Occipital cortex:</strong> Homonymous hemianopia with macular sparing.
+      </div>
+      <div class="alert alert-green" style="margin-top:10px;">
+        <strong>Fundoscopy: Normal vs Abnormal</strong>
+        Normal disc: yellowish-pink, oval, sharp margins, physiological cup present.<br>
+        <strong>Papilloedema:</strong> Blurred disc margins, pink/hyperaemic disc, obliterated cup, venous congestion → raised ICP or malignant hypertension.<br>
+        <strong>Optic atrophy:</strong> Pale disc, sharp margins → previous optic neuritis, compression, ischaemia.
+      </div>
+      <div class="video-section">
+        <div class="video-label">Watch: Optic Nerve Examination</div>
+        <div class="video-wrapper">
+          <iframe src="https://drive.google.com/file/d/1tv6kDXII2xFmui0-ZpzhV3Qp5NvT9GWT/preview" width="100%" height="360" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CN III, IV, VI -->
+  <div class="exam-card">
+    <div class="exam-card-header" onclick="toggleExam(this)">
+      <span class="cn-badge motor">CN III/IV/VI</span>
+      <h3>Oculomotor, Trochlear, Abducent — Eye Movements</h3>
+      <span class="chevron">▶</span>
+    </div>
+    <div class="exam-card-body">
+      <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Inspect at rest:</strong> Look for ptosis, proptosis, or resting eye deviation (strabismus/squint).</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Pupil examination:</strong> Size (normal 2–6 mm), symmetry, shape. Direct and consensual light reflex. Accommodation reflex (ask patient to look at distance then at your finger close up).</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Eye movements:</strong> Ask patient to follow your finger in an "H" pattern (horizontal → upper right → lower right → centre → upper left → lower left). Keep the target within 30 cm. Ask if they see double at any point.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text"><em>Note any nystagmus, limitation of movement, or failure of conjugate gaze. Ask about diplopia — maximal diplopia is in the direction of the paralysed muscle.</em></div></div>
+      <div class="finding-box">
+        <strong>CN III Palsy (Complete)</strong>
+        Ptosis (LPS paralysis) · Eye deviated down and out (lateral rectus + superior oblique act unopposed) · Dilated fixed pupil (parasympathetic fibres run on the outside of the nerve and are compressed early by aneurysm) · Diplopia in all directions except lateral gaze.<br><br>
+        <strong>Pupil-sparing CN III palsy:</strong> Suggests diabetic ischaemia (ischaemia affects central fibres; parasympathetic fibres on periphery spared).<br><br>
+        <strong>CN IV Palsy:</strong> Weakness of downward gaze when the eye is adducted (descending stairs). Patient tilts head away from the affected side to compensate. Vertical diplopia.<br><br>
+        <strong>CN VI Palsy:</strong> Medial deviation of the eye at rest (esotropia). Cannot abduct the eye. Horizontal diplopia, worse on ipsilateral gaze.
+      </div>
+      <div class="alert alert-warn" style="margin-top:10px;">
+        <strong>Internuclear Ophthalmoplegia (INO)</strong>
+        Lesion of the medial longitudinal fasciculus (MLF). On attempted lateral gaze: ipsilateral eye abducts with nystagmus; contralateral eye fails to adduct. Convergence is preserved. Common cause: multiple sclerosis (bilateral INO is pathognomonic of MS).
+      </div>
+      <div class="video-section">
+        <div class="video-label">Watch: Ocular Nerve Examination (CN III, IV, VI)</div>
+        <div class="video-wrapper">
+          <iframe src="https://drive.google.com/file/d/1jNxU7U0iBNidGBTnaDd8tQcqfh89paQm/preview" width="100%" height="360" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CN V -->
+  <div class="exam-card">
+    <div class="exam-card-header" onclick="toggleExam(this)">
+      <span class="cn-badge mixed">CN V</span>
+      <h3>Trigeminal Nerve — Face Sensation & Mastication</h3>
+      <span class="chevron">▶</span>
+    </div>
+    <div class="exam-card-body">
+      <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Sensory:</strong> Test light touch and pin-prick in all three divisions bilaterally: V1 (forehead above eye), V2 (cheek below eye), V3 (chin/jaw, not angle of jaw — that is C2/C3). Compare sides.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Corneal reflex (V1 afferent / VII efferent):</strong> Ask patient to look up and away. Lightly touch the cornea — not the sclera — with a wisp of cotton wool from the side. Normal response: bilateral eye closure. Absent corneal reflex suggests ophthalmic division (V1) impairment.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Motor:</strong> Ask patient to clench teeth (feel masseter). Ask patient to open mouth against resistance (pterygoids). In a unilateral lesion, the jaw deviates towards the weak side on opening.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text"><strong>Jaw jerk reflex:</strong> Place your finger on patient's chin with mouth slightly open; tap with a tendon hammer. Normal: absent or minimal. Brisk jaw jerk → bilateral UMN lesion above the pons (pseudobulbar palsy).</div></div>
+      <div class="finding-box">
+        <strong>Abnormal Findings</strong>
+        <strong>Trigeminal neuralgia (tic douloureux):</strong> Sudden, severe, lancinating unilateral facial pain, usually V2/V3, triggered by touch, chewing, or speaking. No sensory deficit on examination.<br>
+        <strong>Complete CN V lesion:</strong> Ipsilateral facial sensory loss in all three divisions, absent corneal reflex, jaw deviation to the ipsilateral side.
+      </div>
+      <div class="video-section">
+        <div class="video-label">Watch: Trigeminal Nerve Examination</div>
+        <div class="video-wrapper">
+          <iframe src="https://drive.google.com/file/d/1NHR4EkCxzg2ua0whtSPSXTTYRPR8Svmv/preview" width="100%" height="360" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CN VII -->
+  <div class="exam-card">
+    <div class="exam-card-header" onclick="toggleExam(this)">
+      <span class="cn-badge mixed">CN VII</span>
+      <h3>Facial Nerve — Facial Expression</h3>
+      <span class="chevron">▶</span>
+    </div>
+    <div class="exam-card-body">
+      <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Inspection at rest:</strong> Note any facial asymmetry, ptosis, flattening of nasolabial fold, or asymmetric mouth.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Upper face:</strong> "Raise your eyebrows." "Screw your eyes shut tightly — don't let me open them." (Test orbicularis oculi.)</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Lower face:</strong> "Show me your teeth." "Puff out your cheeks." "Whistle." Note any deviation or weakness.</div></div>
+      <div class="alert alert-warn" style="margin-top:10px;">
+        <strong>Central vs Peripheral Facial Palsy — Key Distinction</strong>
+        <table class="data-table" style="margin-top:6px;">
+          <thead><tr><th>Feature</th><th>Central (UMN)</th><th>Peripheral (LMN)</th></tr></thead>
+          <tbody>
+            <tr><td>Lesion site</td><td>Above facial nucleus (cortex/internal capsule)</td><td>At/below facial nucleus (pons, facial canal, parotid)</td></tr>
+            <tr><td>Side of weakness</td><td>Contralateral</td><td>Ipsilateral</td></tr>
+            <tr><td>Forehead sparing</td><td class="ok">YES — upper face spared</td><td class="loss">NO — entire face weak</td></tr>
+            <tr><td>Eye closure</td><td class="ok">Normal</td><td class="loss">Cannot close eye</td></tr>
+            <tr><td>Nasolabial fold</td><td class="loss">Flattened</td><td class="loss">Flattened</td></tr>
+            <tr><td>Mouth deviation</td><td class="loss">To unaffected side</td><td class="loss">To unaffected side</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="finding-box">
+        <strong>Why is the forehead spared in UMN lesions?</strong>
+        The upper facial nucleus receives bilateral supranuclear input (from both hemispheres), so even if one cortex is damaged, the upper face nucleus retains contralateral input. The lower face nucleus receives only contralateral input — hence it is always affected in a unilateral UMN lesion.
+      </div>
+      <div class="video-section">
+        <div class="video-label">Watch: Facial Nerve Examination</div>
+        <div class="video-wrapper">
+          <iframe src="https://drive.google.com/file/d/1e40nGU6g1bzOsFr88Y0JZE5oeiB0iIO_/preview" width="100%" height="360" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CN VIII -->
+  <div class="exam-card">
+    <div class="exam-card-header" onclick="toggleExam(this)">
+      <span class="cn-badge sensory">CN VIII</span>
+      <h3>Vestibulocochlear Nerve — Hearing & Balance</h3>
+      <span class="chevron">▶</span>
+    </div>
+    <div class="exam-card-body">
+      <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Gross hearing:</strong> Stand 60 cm from one ear; occlude the other. Whisper a number. Ask patient to repeat it. Repeat on the other side.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Rinne's test (512 Hz tuning fork):</strong> Place vibrating fork on mastoid (bone conduction). When patient can no longer hear it, move fork to front of external meatus (air conduction). Normally air > bone (Rinne positive). Rinne negative (bone > air) = conductive deafness.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Weber's test:</strong> Place vibrating fork on the vertex of the skull. Ask: "Does it sound louder in one ear?" Normal: midline (equal). Lateralises to the better ear in sensorineural loss; lateralises to the worse ear in conductive loss.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text"><strong>Vestibular function:</strong> Assess gait, Romberg test (feet together, eyes open then closed). Note any nystagmus: direction of fast phase, and whether it changes with gaze direction.</div></div>
+      <div class="finding-box">
+        <strong>Abnormal Findings</strong>
+        <strong>Cochlear nerve lesion:</strong> Sensorineural deafness, tinnitus.<br>
+        <strong>Vestibular nerve lesion:</strong> Vertigo (false sense of rotatory movement), nystagmus, nausea, ataxia.<br>
+        <strong>Acoustic neuroma (CN VIII schwannoma):</strong> Unilateral sensorineural deafness + tinnitus + vertigo. May also compress CN VII and V (cerebellar-pontine angle lesion).
+      </div>
+      <div class="video-section">
+        <div class="video-label">Watch: Vestibulocochlear Nerve Examination</div>
+        <div class="video-wrapper">
+          <iframe src="https://drive.google.com/file/d/1dqJ8k0bzypezJAm3eBTaMDqNHYslC3k9/preview" width="100%" height="360" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CN IX, X -->
+  <div class="exam-card">
+    <div class="exam-card-header" onclick="toggleExam(this)">
+      <span class="cn-badge mixed">CN IX & X</span>
+      <h3>Glossopharyngeal & Vagus — Swallowing & Voice</h3>
+      <span class="chevron">▶</span>
+    </div>
+    <div class="exam-card-body">
+      <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Voice quality:</strong> Ask patient to speak. Note dysarthria (slurred, nasal, or husky voice).</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Palate inspection:</strong> Ask patient to say "Aah." Observe soft palate. Normally it rises symmetrically in the midline. In a unilateral vagal lesion the uvula deviates to the normal side (palate drags up towards the intact side).</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Swallowing:</strong> Ask patient to swallow a small amount of water. Note any choking, nasal regurgitation, or difficulty.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text"><strong>Gag reflex (CN IX afferent / CN X efferent):</strong> Warn the patient. Touch the posterior pharyngeal wall on each side with an orange stick. Normal response: palate elevation and pharyngeal contraction. Absent gag = IX/X lesion. Note: an absent gag reflex alone is not pathological in isolation.</div></div>
+      <div class="finding-box">
+        <strong>Bulbar vs Pseudobulbar Palsy</strong>
+        <strong>Bulbar palsy (LMN):</strong> Flaccid tongue, nasal voice, absent gag, jaw jerk normal/absent. Causes: motor neuron disease, Guillain-Barré, brainstem tumour.<br>
+        <strong>Pseudobulbar palsy (UMN — bilateral):</strong> Spastic tongue, emotional lability, brisk jaw jerk, exaggerated gag. Causes: bilateral strokes, MS, motor neuron disease.
+      </div>
+      <div class="video-section">
+        <div class="video-label">Watch: Glossopharyngeal &amp; Vagus Nerve Examination</div>
+        <div class="video-wrapper">
+          <iframe src="https://drive.google.com/file/d/1WQIv9Y3WKmkplJPuYMdRTuDD5CCdfUWp/preview" width="100%" height="360" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CN XI -->
+  <div class="exam-card">
+    <div class="exam-card-header" onclick="toggleExam(this)">
+      <span class="cn-badge motor">CN XI</span>
+      <h3>Accessory Nerve — Neck & Shoulder</h3>
+      <span class="chevron">▶</span>
+    </div>
+    <div class="exam-card-body">
+      <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Sternocleidomastoid (SCM):</strong> Ask patient to turn their head against resistance. The contracting SCM muscle turns the head to the opposite side. Weakness → cannot turn head to the contralateral side. Note: right SCM turns head to the left.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Trapezius:</strong> Ask patient to shrug both shoulders against downward resistance from your hands. Compare sides. Weakness → cannot shrug the shoulder on the affected side.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text">Inspect for wasting of the SCM or trapezius muscle belly.</div></div>
+      <div class="finding-box">
+        <strong>Clinical Causes</strong>
+        Neck surgery (posterior triangle), penetrating neck trauma, jugular foramen syndrome (also involves IX and X). Isolated CN XI palsy → shoulder drop, winging of scapula, and inability to abduct arm above 90°.
+      </div>
+      <div class="video-section">
+        <div class="video-label">Watch: Accessory Nerve Examination</div>
+        <div class="video-wrapper">
+          <iframe src="https://drive.google.com/file/d/1JKTD0tPnQXYdfRi3zdTBiDFsenYDvkZ_/preview" width="100%" height="360" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CN XII -->
+  <div class="exam-card">
+    <div class="exam-card-header" onclick="toggleExam(this)">
+      <span class="cn-badge motor">CN XII</span>
+      <h3>Hypoglossal Nerve — Tongue</h3>
+      <span class="chevron">▶</span>
+    </div>
+    <div class="exam-card-body">
+      <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Inspection at rest:</strong> Ask patient to open mouth. Inspect the tongue for wasting or fasciculations (fine involuntary twitching — indicates LMN lesion).</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Protrusion:</strong> Ask patient to stick out the tongue. In a unilateral LMN lesion the tongue deviates towards the weak (affected) side — the intact genioglossus pushes the tongue across.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Power:</strong> Ask patient to push the tongue against the inside of each cheek while you push from the outside.</div></div>
+      <div class="finding-box">
+        <strong>UMN vs LMN Tongue Lesions</strong>
+        <strong>LMN lesion (ipsilateral XII palsy):</strong> Tongue deviates to the affected side, wasting, fasciculations present.<br>
+        <strong>UMN lesion (contralateral cortical/internal capsule):</strong> Tongue deviates to the affected side (contralateral to the brain lesion — remember the nucleus receives crossed input), no wasting, no fasciculations. Spastic tongue.
+      </div>
+      <div class="video-section">
+        <div class="video-label">Watch: Hypoglossal Nerve Examination</div>
+        <div class="video-wrapper">
+          <iframe src="https://drive.google.com/file/d/1gaI_58r0u2NTVIFn02sEmj_gfBRZgbto/preview" width="100%" height="360" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ TAB 3: LESION FINDER -->
+<div id="lesions" class="tab-content">
+
+  <div class="alert alert-blue">
+    <strong>How to Use This Section</strong>
+    Use the clinical findings below to localise the lesion. Each panel presents the classic deficit pattern for a specific nerve or anatomical site.
+  </div>
+
+  <div class="section-title">Complete CN III Palsy</div>
+  <div class="locator-card" style="background:var(--red-bg);border-color:#f0c0c0;">
+    <h4 style="color:var(--red);">Signs</h4>
+    <div class="sign-row"><div class="dot red"></div>Ptosis (drooping eyelid)</div>
+    <div class="sign-row"><div class="dot red"></div>Eye deviated down and out (lateral + inferior)</div>
+    <div class="sign-row"><div class="dot red"></div>Fixed, dilated pupil (mydriasis)</div>
+    <div class="sign-row"><div class="dot red"></div>Diplopia in all directions except full abduction</div>
+    <div class="alert alert-warn" style="margin-top:10px;font-size:12.5px;">
+      <strong>Think:</strong> Posterior communicating artery aneurysm (dilated pupil = surgical emergency), Weber syndrome (ipsilateral CN III + contralateral hemiplegia = midbrain), cavernous sinus pathology, tentorial herniation.
+    </div>
+  </div>
+
+  <div class="section-title">Horner Syndrome</div>
+  <div class="locator-card" style="background:var(--accent);">
+    <h4>Signs (ipsilateral)</h4>
+    <div class="sign-row"><div class="dot"></div>Partial ptosis (upper eyelid drops)</div>
+    <div class="sign-row"><div class="dot"></div>Miosis (small pupil)</div>
+    <div class="sign-row"><div class="dot"></div>Anhidrosis (absent facial sweating)</div>
+    <div class="sign-row"><div class="dot"></div>Enophthalmos (sunken appearance of eye)</div>
+    <div class="alert alert-warn" style="margin-top:10px;font-size:12.5px;">
+      <strong>Causes:</strong> Sympathetic pathway lesion at any level — Pancoast tumour (lung apex), carotid artery dissection, lateral medullary syndrome, syringomyelia.
+    </div>
+  </div>
+
+  <div class="section-title">Bell's Palsy vs Stroke — Facial Palsy</div>
+  <div class="card" style="padding:0;overflow:hidden;">
+    <table class="data-table">
+      <thead><tr><th>Feature</th><th>Bell's Palsy (LMN / Peripheral)</th><th>Stroke (UMN / Central)</th></tr></thead>
+      <tbody>
+        <tr><td>Onset</td><td>Rapid (hours to days)</td><td>Sudden (minutes)</td></tr>
+        <tr><td>Forehead</td><td class="loss">Weak — cannot raise eyebrow</td><td class="ok">Spared — can raise eyebrow</td></tr>
+        <tr><td>Eye closure</td><td class="loss">Cannot close eye (Bell's phenomenon)</td><td class="ok">Normal or near-normal</td></tr>
+        <tr><td>Taste</td><td class="loss">May be lost (anterior 2/3 tongue)</td><td class="ok">Preserved</td></tr>
+        <tr><td>Hyperacusis</td><td class="loss">May be present (stapedius branch)</td><td class="ok">Absent</td></tr>
+        <tr><td>Associated limb weakness</td><td class="ok">None</td><td class="loss">Contralateral hemiplegia often present</td></tr>
+        <tr><td>Aetiology</td><td>Viral (HSV-1 reactivation most common)</td><td>Vascular / demyelinating</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-title">Weber Syndrome (Midbrain)</div>
+  <div class="two-col">
+    <div class="locator-card">
+      <h4>Ipsilateral Signs</h4>
+      <div class="sign-row"><div class="dot red"></div>Complete CN III palsy (ptosis, dilated pupil, eye down-and-out)</div>
+    </div>
+    <div class="locator-card">
+      <h4>Contralateral Signs</h4>
+      <div class="sign-row"><div class="dot red"></div>Hemiplegia (corticospinal tract crosses below midbrain)</div>
+      <div class="sign-row"><div class="dot red"></div>Upper motor neuron facial weakness (lower face only)</div>
+    </div>
+  </div>
+
+  <div class="section-title">Pontine Lesion (CN VI in Pons)</div>
+  <div class="two-col">
+    <div class="locator-card">
+      <h4>Ipsilateral</h4>
+      <div class="sign-row"><div class="dot red"></div>CN VI palsy — eye deviated medially, cannot abduct</div>
+      <div class="sign-row"><div class="dot red"></div>CN VII palsy may co-exist (facial palsy)</div>
+    </div>
+    <div class="locator-card">
+      <h4>Contralateral</h4>
+      <div class="sign-row"><div class="dot red"></div>Hemiplegia — crossed (Foville or Millard-Gubler syndrome)</div>
+    </div>
+  </div>
+
+  <div class="section-title">Jugular Foramen Syndrome (CN IX, X, XI)</div>
+  <div class="locator-card">
+    <h4>Signs (all ipsilateral)</h4>
+    <div class="sign-row"><div class="dot red"></div>Absent gag reflex (CN IX afferent)</div>
+    <div class="sign-row"><div class="dot red"></div>Dysphonia, dysphagia (CN X)</div>
+    <div class="sign-row"><div class="dot red"></div>Uvula deviates to normal side</div>
+    <div class="sign-row"><div class="dot red"></div>Weakness of SCM and trapezius (CN XI)</div>
+    <div class="alert alert-warn" style="margin-top:10px;font-size:12.5px;">
+      <strong>Causes:</strong> Glomus jugulare tumour, nasopharyngeal carcinoma, skull base fracture, meningitis.
+    </div>
+  </div>
+
+  <div class="section-title">Cortical Lobe Lesions — Speech & Higher Function</div>
+  <div class="locator-grid">
+    <div class="locator-card">
+      <h4>Frontal Lobe</h4>
+      <div class="sign-row"><div class="dot"></div>Contralateral hemiparesis / monoparesis (UMN)</div>
+      <div class="sign-row"><div class="dot"></div>Broca's aphasia (expressive — cannot speak, comprehension intact)</div>
+      <div class="sign-row"><div class="dot"></div>Behavioural change, disinhibition</div>
+      <div class="sign-row"><div class="dot"></div>Contralateral forced eye deviation</div>
+      <div class="sign-row"><div class="dot"></div>Primitive reflexes (grasp, rooting) if severe</div>
+    </div>
+    <div class="locator-card">
+      <h4>Parietal Lobe</h4>
+      <div class="sign-row"><div class="dot"></div>Contralateral discriminatory sensory loss</div>
+      <div class="sign-row"><div class="dot"></div>Inferior quadrantanopia</div>
+      <div class="sign-row"><div class="dot"></div>Gerstmann syndrome: finger agnosia, dyscalculia, dysgraphia, left-right confusion</div>
+      <div class="sign-row"><div class="dot"></div>Ideomotor apraxia</div>
+    </div>
+    <div class="locator-card">
+      <h4>Temporal Lobe</h4>
+      <div class="sign-row"><div class="dot"></div>Wernicke's aphasia (receptive — fluent but incomprehensible speech, poor comprehension)</div>
+      <div class="sign-row"><div class="dot"></div>Superior quadrantanopia ("pie in the sky")</div>
+      <div class="sign-row"><div class="dot"></div>Memory impairment</div>
+      <div class="sign-row"><div class="dot"></div>Complex partial seizures (olfactory aura if uncus involved)</div>
+    </div>
+    <div class="locator-card">
+      <h4>Occipital Lobe</h4>
+      <div class="sign-row"><div class="dot"></div>Contralateral homonymous hemianopia with macular sparing</div>
+      <div class="sign-row"><div class="dot"></div>Visual agnosia (cannot recognise faces or objects)</div>
+      <div class="sign-row"><div class="dot"></div>Visual illusions (distorted colour, size, number)</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ TAB 4: QUIZ -->
+<div id="quiz" class="tab-content">
+
+  <div class="quiz-progress">
+    <span>Clinical SBA Questions — Cranial Nerve Examination</span>
+    <span class="score-display" id="score-display">Score: 0 / 0</span>
+  </div>
+
+  <div id="quiz-container"></div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>Cranial Nerves Clinical Examination | Neuroscience Practical Session<br>
+  Developed by Dr. Salaheldin Terair · 2026</p>
+</footer>
+
+<script>
+// ── TAB SWITCHING
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ── EXAM CARD TOGGLE
+function toggleExam(header) {
+  header.classList.toggle('open');
+  const body = header.nextElementSibling;
+  body.classList.toggle('open');
+}
+
+// ── QUIZ DATA
+const questions = [
+  {
+    scenario: "A 45-year-old man presents with sudden severe headache described as 'the worst of his life'. On examination, he has ptosis on the right, the right eye is deviated down and out, and the right pupil is dilated and fixed to light.",
+    q: "Which of the following is the most likely diagnosis?",
+    options: ["Diabetic CN III palsy", "Posterior communicating artery aneurysm", "Cavernous sinus thrombosis", "Multiple sclerosis plaque in the midbrain"],
+    answer: "Posterior communicating artery aneurysm",
+    explanation: "A complete CN III palsy with pupil involvement (dilated, fixed pupil) in the context of sudden severe headache strongly suggests a posterior communicating artery (PoCA) aneurysm compressing the oculomotor nerve. This is a neurosurgical emergency. Diabetic CN III palsy typically spares the pupil because ischaemia affects central motor fibres while the parasympathetic fibres on the nerve's surface remain intact."
+  },
+  {
+    scenario: "A 62-year-old woman with poorly controlled hypertension develops right-sided facial weakness. Examination shows she can raise her right eyebrow and close her right eye normally, but there is marked weakness of the right lower face with flattening of the right nasolabial fold. The mouth deviates to the left.",
+    q: "Where is the lesion most likely located?",
+    options: ["Right facial nerve in the facial canal", "Left cerebral cortex / internal capsule", "Right pons near the facial nucleus", "Right parotid gland"],
+    answer: "Left cerebral cortex / internal capsule",
+    explanation: "This is a central (UMN) facial palsy. The forehead and eye closure are spared because the upper facial nucleus receives bilateral supranuclear input — it is supplied by both hemispheres. The lower face is only supplied contralaterally, so a left-sided cortical stroke produces right lower facial weakness. The affected side is contralateral to the lesion, pointing to the left hemisphere."
+  },
+  {
+    scenario: "A 28-year-old woman presents with episodes of blurred vision and now complains that when she looks to the right, her left eye does not move medially, but the right eye abducts with nystagmus. When asked to look at a near object, both eyes converge normally.",
+    q: "What is the most likely underlying diagnosis?",
+    options: ["Right CN VI palsy", "Left CN III palsy", "Internuclear ophthalmoplegia due to a medial longitudinal fasciculus lesion", "Convergence spasm"],
+    answer: "Internuclear ophthalmoplegia due to a medial longitudinal fasciculus lesion",
+    explanation: "This is internuclear ophthalmoplegia (INO). The medial longitudinal fasciculus (MLF) coordinates conjugate gaze by connecting the abducent nucleus in the pons to the contralateral oculomotor nucleus. Lesion of the left MLF impairs adduction of the left eye on rightward gaze, while the abducting right eye shows nystagmus. Preserved convergence (which bypasses the MLF) is the key distinguishing feature. In a young woman, bilateral INO is pathognomonic of multiple sclerosis."
+  },
+  {
+    scenario: "A 70-year-old man is found to have bitemporal hemianopia on visual field testing. He also reports headache and reduced libido.",
+    q: "At which anatomical site is the most likely lesion?",
+    options: ["Left optic tract", "Optic chiasma", "Lateral geniculate body", "Right occipital cortex"],
+    answer: "Optic chiasma",
+    explanation: "Bitemporal hemianopia (loss of the outer/temporal visual fields of both eyes) is the classic pattern of optic chiasma compression. The nasal retinal fibres from both eyes decussate at the chiasma. Compression — most commonly by a pituitary adenoma — damages these crossing fibres selectively, producing bitemporal loss. The associated symptoms (headache and reduced libido) further support a pituitary mass with hormonal effects."
+  },
+  {
+    scenario: "A 55-year-old man presents with dysphagia, a hoarse voice, and absent gag reflex on the left. Examination also shows the left soft palate fails to rise and the uvula deviates to the right.",
+    q: "Which cranial nerves are most likely affected?",
+    options: ["CN V and CN VII", "CN IX and CN X", "CN XI and CN XII", "CN VII and CN VIII"],
+    answer: "CN IX and CN X",
+    explanation: "The glossopharyngeal nerve (CN IX) carries the afferent limb of the gag reflex and sensation from the posterior pharynx. The vagus nerve (CN X) supplies the soft palate and pharyngeal muscles (efferent gag) and the larynx (hoarse voice). Unilateral CN X palsy causes the uvula to deviate away from the lesion (toward the normal side). Combined IX/X involvement at the jugular foramen should prompt a search for a glomus jugulare tumour or skull base lesion."
+  },
+  {
+    scenario: "A 32-year-old man notices that after hitting his head in a road traffic accident, he has difficulty reading menus when looking downward to the right. He tilts his head to the left. No other neurological deficits are found.",
+    q: "Which cranial nerve is most likely injured?",
+    options: ["CN III right", "CN VI right", "CN IV right", "CN III left"],
+    answer: "CN IV right",
+    explanation: "CN IV (trochlear nerve) supplies the superior oblique muscle, which depresses the eye when it is in the adducted position. A right CN IV palsy impairs downward gaze to the right (when descending stairs or reading). The patient compensates by tilting the head away from the affected side to reduce the vertical diplopia. CN IV palsy is the most common isolated cranial nerve injury following closed head trauma because of its long intracranial course and susceptibility at the free edge of the tentorium cerebelli."
+  },
+  {
+    scenario: "A 65-year-old woman develops sudden onset of left-sided hemiplegia. Examination reveals that she cannot abduct the right eye, and there is right-sided peripheral facial palsy with complete loss of right forehead movement.",
+    q: "This constellation of signs indicates a lesion in which structure?",
+    options: ["Right cerebral hemisphere", "Right midbrain", "Right pons", "Left medulla"],
+    answer: "Right pons",
+    explanation: "This is a crossed (alternating) hemiplegia with ipsilateral CN VI and CN VII palsy — a classic Millard-Gubler syndrome caused by a right pontine lesion. The abducent nucleus (CN VI) and facial nucleus (CN VII) both lie in the pons. A right-sided pontine infarction or tumour damages both nuclei, producing ipsilateral abducens palsy (right medial deviation of eye) and ipsilateral lower motor neuron facial palsy (complete, including the forehead). The corticospinal tract, which crosses lower in the medulla, is damaged before the decussation, causing contralateral (left) hemiplegia."
+  },
+  {
+    scenario: "On fundoscopy of a 40-year-old hypertensive woman, you observe that the right optic disc margins are blurred, the disc is pink and swollen, the physiological cup is obliterated, and the retinal veins appear congested.",
+    q: "What is the most likely diagnosis and its commonest underlying cause in this patient?",
+    options: ["Optic atrophy due to glaucoma", "Papilloedema due to raised intracranial pressure", "Retinal vein occlusion due to diabetes", "Drusen deposits due to age-related macular degeneration"],
+    answer: "Papilloedema due to raised intracranial pressure",
+    explanation: "Papilloedema refers to optic disc swelling caused by raised intracranial pressure (ICP). The key features are blurred disc margins, a hyperaemic (pink) disc, obliteration of the physiological cup, and venous congestion. It is typically bilateral. Common causes include intracranial mass lesions, idiopathic intracranial hypertension, and malignant hypertension. In this context, malignant hypertension is a relevant cause given the patient's history. Visual acuity is initially preserved in papilloedema, which helps distinguish it from acute optic neuritis (where acuity is lost early)."
+  },
+  {
+    scenario: "A 50-year-old man is evaluated for progressive dysphagia and dysarthria. His speech has a nasal quality. Examination reveals a flaccid tongue with visible fasciculations, absent gag reflex, and a normal jaw jerk.",
+    q: "This clinical picture is most consistent with which syndrome?",
+    options: ["Pseudobulbar palsy", "Bulbar palsy", "Bilateral cortical strokes", "Myasthenia gravis"],
+    answer: "Bulbar palsy",
+    explanation: "Bulbar palsy refers to lower motor neuron involvement of CN IX, X, XI, and XII due to lesions of the lower brainstem nuclei or their peripheral nerves. Key features are flaccid tongue with wasting and fasciculations, absent gag reflex, nasal voice, dysphagia, and a normal or absent jaw jerk. This contrasts with pseudobulbar palsy (UMN — bilateral supranuclear lesions), which presents with a spastic tongue, brisk jaw jerk, emotional lability, and preserved or exaggerated gag reflex. Common causes of bulbar palsy include motor neuron disease, Guillain-Barré syndrome, and medullary lesions."
+  },
+  {
+    scenario: "A 55-year-old woman presents with sudden onset right-sided weakness and difficulty speaking. She understands everything said to her but can only produce a few halting words. She is frustrated and aware of her difficulty.",
+    q: "Which type of aphasia does this represent, and where is the lesion?",
+    options: ["Wernicke's aphasia — left temporal lobe", "Broca's aphasia — left frontal lobe (Broca's area)", "Global aphasia — bilateral speech areas", "Conduction aphasia — left arcuate fasciculus"],
+    answer: "Broca's aphasia — left frontal lobe (Broca's area)",
+    explanation: "Broca's (expressive or motor) aphasia is characterised by non-fluent, effortful speech with preserved comprehension. The patient understands what is said and knows what they want to say, but cannot produce fluent speech. Grammatical errors (agrammatism) and articulation errors are typical. The lesion is in the posterior inferior frontal gyrus of the dominant (usually left) hemisphere — Brodmann areas 44 and 45. This contrasts with Wernicke's aphasia (fluent but incomprehensible speech, poor comprehension), where the lesion is in the posterior superior temporal gyrus."
+  }
+];
+
+let answered = 0;
+let correct = 0;
+
+function buildQuiz() {
+  const container = document.getElementById('quiz-container');
+  questions.forEach((q, i) => {
+    const card = document.createElement('div');
+    card.className = 'q-card';
+    card.id = `q${i}`;
+
+    const letters = ['A', 'B', 'C', 'D'];
+    let optsHTML = q.options.map((opt, j) => `
+      <button class="opt-btn" onclick="checkAnswer(${i}, '${opt.replace(/'/g, "\\'")}', this)">
+        <span class="opt-letter">${letters[j]}.</span>${opt}
+      </button>`).join('');
+
+    card.innerHTML = `
+      <div class="q-num">Question ${i + 1} of ${questions.length}</div>
+      ${q.scenario ? `<div class="q-scenario">${q.scenario}</div>` : ''}
+      <div class="q-stem">${q.q}</div>
+      ${optsHTML}
+      <div class="explanation" id="exp${i}"><strong>✓ Explanation</strong><br>${q.explanation}</div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function checkAnswer(qIdx, selected, btn) {
+  const card = document.getElementById(`q${qIdx}`);
+  const btns = card.querySelectorAll('.opt-btn');
+  const isCorrect = selected === questions[qIdx].answer;
+
+  btns.forEach(b => {
+    b.classList.add('disabled');
+    b.onclick = null;
+    const label = b.querySelector('.opt-letter').nextSibling.textContent || b.textContent.trim().substring(2);
+    const rawText = b.textContent.trim().substring(2).trim();
+    if (rawText === questions[qIdx].answer) b.classList.add('correct');
+  });
+  if (!isCorrect) btn.classList.add('wrong');
+
+  document.getElementById(`exp${qIdx}`).classList.add('show');
+
+  answered++;
+  if (isCorrect) correct++;
+  document.getElementById('score-display').textContent = `Score: ${correct} / ${answered}`;
+}
+
+buildQuiz();
+</script>
+</body>
+</html>
